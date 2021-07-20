@@ -1,5 +1,8 @@
-def slice():
+def slice(emails_path):
     import csv
+
+    # open specified file in read mode
+    emails = open(emails_path, "r")
 
     # open file in write mode
     f = open('sliced.csv', 'w', encoding='UTF8')
@@ -13,7 +16,7 @@ def slice():
     while True:
 
         # get email
-        email = input('email: ')
+        email = emails.read().splitlines()
 
         # if no email entered, close the file and break the loop
         if email == '':
@@ -22,6 +25,7 @@ def slice():
 
         # split email at @ sign
         email = email.split('@')
+        print(f'{email}')
 
         #write email to csv-file
         writer.writerow(email)
@@ -30,4 +34,4 @@ def slice():
     f.close()
 
 # run the function
-slice()
+slice('emails.txt')
