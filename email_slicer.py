@@ -12,20 +12,15 @@ def slice(emails_path):
     header = ['username', 'domain']
     writer.writerow(header)
 
-    # loops forever
-    while True:
+    # iterate through emails
+    for email in emails:
 
-        # get email
-        email = emails.read().splitlines()
-
-        # if no email entered, close the file and break the loop
-        if email == '':
-            f.close()
-            break
+        # remove newline
+        email = email.replace('\n', '')
 
         # split email at @ sign
         email = email.split('@')
-        print(f'{email}')
+        #print(f'{email}')
 
         #write email to csv-file
         writer.writerow(email)
