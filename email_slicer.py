@@ -1,33 +1,21 @@
-def slice():
-    import csv
+'''
+email-slicer
+The program asks for the email-adress, and stores it in a csv file called sliced_emails. 
+The usernames and domains will be seperated.
+'''
 
-    # open file in write mode
-    f = open('sliced.csv', 'w', encoding='UTF8')
+import csv
 
-    # create csv writer and write header
-    writer = csv.writer(f)
-    header = ['username', 'domain']
-    writer.writerow(header)
+f = open('sliced_emails.csv', 'w', encoding='UTF8')
 
-    # loops forever
-    while True:
+writer = csv.writer(f)  # create csv writer
+writer.writerow(['username', 'domain'])
 
-        # get email
-        email = input('email: ')
+email = input('email (enter when done): ')
+while email != '':
+    email = email.split('@')
+    writer.writerow(email)
+    email = input('email (enter when done): ')
+f.close()
 
-        # if no email entered, close the file and break the loop
-        if email == '':
-            f.close()
-            break
-
-        # split email at @ sign
-        email = email.split('@')
-
-        #write email to csv-file
-        writer.writerow(email)
-
-    # close the file
-    f.close()
-
-# run the function
-slice()
+print('bye.')
